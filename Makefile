@@ -24,7 +24,7 @@ release: build tag_latest
 	@git push origin v-$(VERSION)
 
 debug:
-	docker run -t -i $(NAME):$(VERSION) /bin/bash -l
+	docker run -t -i --entrypoint=/bin/bash $(NAME):$(VERSION) -l
 
 run:
 	@echo "IPAddress =" $$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $$(docker run -d -p 80:80 -p 443:443 --name node $(NAME):$(VERSION)))

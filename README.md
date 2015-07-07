@@ -1,5 +1,7 @@
 # NODE
 
+IN DEVELOPPMENT !!!!!!!!!!!!!!!!!!!
+
 Docker Image for [Node.js](https://nodejs.org) based on airdock/base:latest
 
 
@@ -25,9 +27,12 @@ You should have already install [Docker](https://www.docker.com/).
 
 Execute:
 
-		docker run -d -p 80:80 -p 443:443 --name node airdock/node node --version
+		docker run -d -p 80:80 -p 443:443 --name node airdock/node parameters-for-node
 
+To overide entry point do:
 
+		docker run -ti --name node --entrypoint=/bin/bash airdock/node -l
+		
 
 The user node (uid 33) in your container should be known into your host. As it is a standard user, it should be erver present.
 See :

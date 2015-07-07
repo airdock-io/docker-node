@@ -5,11 +5,11 @@
 # SOURCE:         https://github.com/airdock-io/docker-node
 
 # Pull base image.
-FROM airdock:base:latest
+FROM airdock/base:latest
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
 # Install Node.js using https://github.com/nodesource/distributions
-RUN curl -sL https://deb.nodesource.com/setup_0.10 | bash -
+RUN curl -sL https://deb.nodesource.com/setup_0.12 | bash -
   apt-get install -y nodejs && \
   /root/post-install
   
