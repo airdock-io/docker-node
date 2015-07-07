@@ -1,30 +1,17 @@
-NAME = airdock/node
-VERSION = 1.0
+DIRS := node-10 node-12
+BUILD_DIRS :=  $(addsuffix .build,$(DIRS))
+CLEAN_DIRS :=  $(addsuffix .clean,$(DIRS))
 
-.PHONY: all clean build tag_latest release debug run
-
-all: build
-
-clean:
-	@CID=$(shell docker ps -a | awk '{ print $$1 " " $$2 }' | grep $(NAME) | awk '{ print $$1 }'); if [ ! -z "$$CID" ]; then echo "Removing container which reference $(NAME)"; for container in $(CID); do docker rm -f $$container; done; fi;
-	@if docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then docker rmi -f $(NAME):$(VERSION); fi
-	@if docker images $(NAME) | awk '{ print $$2 }' | grep -q -F latest; then docker rmi -f $(NAME):latest; fi
+build: $(BUILD_DIRS)
+$(BUILD_DIRS):
+	@echo $@
+	$(MAKE) -C $(basename $@) build
 
 
-build: clean
-	docker build -t $(NAME):$(VERSION) --rm .
+clean: $(CLEAN_DIRS)
+$(CLEAN_DIRS):
+	@echo $@
+	$(MAKE) -C $(basename $@) clean
 
-tag_latest:
-	@docker tag $(NAME):$(VERSION) $(NAME):latest
-
-release: build tag_latest
-	docker push $(NAME)
-	@echo "Create a tag v-$(VERSION)"
-	@git tag v-$(VERSION)
-	@git push origin v-$(VERSION)
-
-debug:
-	docker run -t -i --entrypoint=/bin/bash $(NAME):$(VERSION) -l
-
-run:
-	@echo "IPAddress =" $$(docker inspect --format '{{.NetworkSettings.IPAddress}}' $$(docker run -d -p 80:80 -p 443:443 --name node $(NAME):$(VERSION)))
+ 
+.PHONY: build $(BUILD_DIRS) clean $(CLEAN_DIRS) 

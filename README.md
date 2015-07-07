@@ -4,7 +4,6 @@ IN DEVELOPPMENT !!!!!!!!!!!!!!!!!!!
 
 Docker Image for [Node.js](https://nodejs.org) based on airdock/base:latest
 
-
 Purpose of this image is:
 
 - install [node, npm]https://nodejs.org)
@@ -12,6 +11,11 @@ Purpose of this image is:
 
 
 > Name: airdock/node
+
+***Tags***:
+
+- 'latest' or '12': nodejs version 0.12
+- '10': nodejs version 0.10 
 
 ***Dependencies***: airdock/base:latest
 
@@ -58,9 +62,14 @@ Don't forget to add your current user to this new group.
 
 # Change Log
 
-## Tag latest (current)
+## Tag latest or 12
 
-- add node.js
+- add node.js 0.12
+- MIT license
+
+## Tag 10 
+
+- add node.js 0.10
 - MIT license
 
 # Build
