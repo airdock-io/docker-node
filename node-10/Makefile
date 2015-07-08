@@ -27,4 +27,4 @@ debug:
 	docker run -t -i --entrypoint=/bin/bash $(NAME):$(VERSION) -l
 
 run:
-	docker run --name node $(NAME):$(VERSION)
+	docker run $(NAME):$(VERSION)
