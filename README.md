@@ -63,11 +63,13 @@ Don't forget to add your current user to this new group.
 ## Tag latest or 12
 
 - add node.js 0.12
+- use user node:node
 - MIT license
 
 ## Tag 10 
 
 - add node.js 0.10
+- use user node:node
 - MIT license
 
 # Build
