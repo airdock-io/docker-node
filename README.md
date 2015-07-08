@@ -1,7 +1,5 @@
 # NODE
 
-IN DEVELOPPMENT !!!!!!!!!!!!!!!!!!!
-
 Docker Image for [Node.js](https://nodejs.org) based on airdock/base:latest
 
 Purpose of this image is:
