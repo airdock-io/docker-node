@@ -1,7 +1,7 @@
 # VERSION 1.0
 # AUTHOR:         Jerome Guibert <jguibert@gmail.com>
 # DESCRIPTION:    Node image based on debian:jessie
-# TO_BUILD:       docker build --rm -t airdock/node .
+# TO_BUILD:       docker build --rm -t airdock/node:12 .
 # SOURCE:         https://github.com/airdock-io/docker-node
 
 # Pull base image.
