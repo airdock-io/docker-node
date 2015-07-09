@@ -9,15 +9,16 @@ MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
 ENV NODE_VERSION v0.10.39
 
-# Install Node.js 
+# Install Node.js
 RUN apt-get update -qq && apt-get install -y --no-install-recommends python build-essential ca-certificates && \
   mkdir -p /opt/node && \
   curl http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.gz | tar xvzf - -C /opt/node --strip-components=1 && \
   chown -R node:node /opt/node && \
-  ln -s  /opt/node/bin/node /usr/local/bin/node && \ 
+  ln -s  /opt/node/bin/node /usr/local/bin/node && \
   ln -s  /opt/node/bin/npm /usr/local/bin/npm && \
-  /root/post-install 
+  /root/post-install
+
+WORKDIR /srv/node/
 
 # Define default command.
-ENTRYPOINT ["gosu", "node:node", "node"]
-CMD [ "--version"]
+CMD ["gosu", "node:node", "node", "--version"]

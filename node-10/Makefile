@@ -24,7 +24,7 @@ release: build tag_latest
 	@git push origin v-$(VERSION)
 
 debug:
-	docker run -t -i --entrypoint=/bin/bash $(NAME):$(VERSION) -l
+	docker run -t -i $(NAME):$(VERSION) /bin/bash -l
 
 run:
 	docker run $(NAME):$(VERSION)

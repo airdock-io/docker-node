@@ -10,10 +10,12 @@ Purpose of this image is:
 
 > Name: airdock/node
 
+***Status***: develop
+
 ***Tags***:
 
 - 'latest' or '12': nodejs version 0.12
-- '10': nodejs version 0.10 
+- '10': nodejs version 0.10
 
 ***Dependencies***: airdock/base:latest
 
@@ -29,12 +31,12 @@ You should have already install [Docker](https://www.docker.com/).
 
 Execute:
 
-		docker run -d -p 80:80 -p 443:443 --name node airdock/node parameters-for-node
+		docker run -d -p 80:80 -p 443:443 --name node airdock/node node parameters-for-node
 
 To overide entry point do:
 
-		docker run -ti --name node --entrypoint=/bin/bash airdock/node -l
-		
+		docker run -ti --name node airdock/node /bin/bash  -l
+
 
 The user node (uid 33) in your container should be known into your host. As it is a standard user, it should be erver present.
 See :
@@ -60,13 +62,18 @@ Don't forget to add your current user to this new group.
 
 # Change Log
 
+## TODO
+
+- add gnupg validation
+- add checksum validation
+
 ## Tag latest or 12
 
 - add node.js 0.12
 - use user node:node
 - MIT license
 
-## Tag 10 
+## Tag 10
 
 - add node.js 0.10
 - use user node:node
