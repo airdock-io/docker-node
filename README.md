@@ -10,8 +10,6 @@ Purpose of this image is:
 
 > Name: airdock/node
 
-***Status***: develop
-
 ***Tags***:
 
 - 'latest' or '12': nodejs version 0.12
