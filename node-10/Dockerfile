@@ -4,26 +4,21 @@
 # TO_BUILD:       docker build --rm -t airdock/node .
 # SOURCE:         https://github.com/airdock-io/docker-node
 
-# Pull base image.
 FROM airdock/base:latest
 MAINTAINER Jerome Guibert <jguibert@gmail.com>
 
-# Define default workdir
-WORKDIR /srv/node
+ENV NODE_VERSION v0.10.39
 
-# Install Node.js using https://github.com/nodesource/distributions
-RUN curl -sL https://deb.nodesource.com/setup_0.10 | bash - && \
-  apt-get install -y nodejs && \
-  chown -R node:node /srv/node && \
-  /root/post-install 
-  
+# Install Node.js
+RUN apt-get update -qq && apt-get install -y --no-install-recommends python build-essential ca-certificates && \
+  mkdir -p /opt/node && \
+  curl http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION-linux-x64.tar.gz | tar xvzf - -C /opt/node --strip-components=1 && \
+  chown -R node:node /opt/node && \
+  ln -s  /opt/node/bin/node /usr/local/bin/node && \
+  ln -s  /opt/node/bin/npm /usr/local/bin/npm && \
+  /root/post-install
 
-# default export 
-EXPOSE 80 443
-
-# volume 
-VOLUME /srv/node
+WORKDIR /srv/node/
 
 # Define default command.
-ENTRYPOINT ["gosu", "node:node", "node"]
-CMD [ "--version"]
+CMD ["gosu", "node:node", "node", "--version"]
