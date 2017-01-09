@@ -1,26 +1,30 @@
 # NODE [![](https://badge.imagelayers.io/airdock/node:latest.svg)](https://imagelayers.io/?images=airdock/node:latest 'Get your own badge on imagelayers.io')
 
-Docker Image for [Node.js](https://nodejs.org) based on airdock/base:latest
+Docker Image for [Node.js](https://nodejs.org)
 
 Purpose of this image is:
 
 - install [node, npm]https://nodejs.org)
-- based on airdock/base:latest (debian)
+- based on airdock/base:alpine
 
 
 > Name: airdock/node
 
 ***Tags***:
 
-- 'latest' or '12': nodejs version 0.12
-- '10': nodejs version 0.10
+- '7.4.0': based on airdock/base:alpine
+- '12': nodejs version 0.12 based on airdock/base:latest (Debian Jessie)
+- '10': nodejs version 0.10 based on airdock/base:latest (Debian Jessie)
 
-***Dependencies***: airdock/base:latest
 
 ***Few links***:
 
 - [node.js](https://nodejs.org)
 - [Node Distribution](https://github.com/nodesource/distributions)
+
+Inspired by:
+- https://github.com/mhart/alpine-node
+- https://github.com/nodejs/docker-node
 
 
 # Usage
@@ -29,14 +33,10 @@ You should have already install [Docker](https://www.docker.com/).
 
 Execute:
 
-		docker run -d -p 80:80 -p 443:443 --name node airdock/node node parameters-for-node
-
-To overide entry point do:
-
-		docker run -ti --name node airdock/node /bin/bash  -l
+		docker run -d -p 80:80 -p 443:443 --name node airdock/node parameters-for-node
 
 
-The user node (uid 33) in your container should be known into your host. As it is a standard user, it should be erver present.
+The user node (uid 33) in your container should be known into your host. As it is a standard user, it should be ever present.
 See :
 * [How Managing user in docker container ?](https://github.com/airdock-io/docker-base/wiki/How-Managing-user-in-docker-container)
 * [Common User List](https://github.com/airdock-io/docker-base/wiki/Common-User-List)
@@ -60,12 +60,13 @@ Don't forget to add your current user to this new group.
 
 # Change Log
 
-## TODO
+## Tag 7.4.0
 
-- add gnupg validation
-- add checksum validation
+- add nodejs 7.4.0
+- based on alpine
+- use tiny and su-exec with dedicated node:node user
 
-## Tag latest or 12
+## Tag 12
 
 - add node.js 0.12
 - use user node:node
